@@ -67,7 +67,7 @@ domcheck({
   }
 });
 ```
-### Setup Github Action
+## Setup Github Action
 
 The [`action.yml`](https://github.com/zianwar/domcheck-github-action/blob/master/.github/workflows/action.yml) already inital contains code for setting up the action, you only need to:
 1. Set your cron schedure
