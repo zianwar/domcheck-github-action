@@ -5,7 +5,7 @@ Track DOM node and get notified when its value changes.
 Use cases includes checking some text on websites that doesn\'t support APIs, such as tracking a visa application status or amazon product price.
 
 ## Usage
-Fork this repo and add your DOM checkers, you can define a **checker** which is just a Javascript file, like this [`hackernews.js`](https://github.com/zianwar/domcheck/blob/master/hackernews.js):
+Fork this repo and add your DOM checkers, you can define a **checker** with just a Javascript file, like this [`hackernews.js`](https://github.com/zianwar/domcheck/blob/master/hackernews.js):
 ```js
 const domcheck = require('./domcheck');
 const axios = require('axios');
@@ -15,18 +15,21 @@ domcheck({
    * name [required] Name of the checker.
    */
   name: 'hackernews',
+  
   /**
    * url [required] The URL of the website to scrap using [Puppeeter](https://developers.google.com/web/tools/puppeteer)
    */
   url: 'https://news.ycombinator.com/',
+  
   /**
-   * history [optional] The path to the history file that records DOM node values, 
+   * history [optional] The path to the history file (CSV) that records DOM node values, 
    * this file is checked everytime the code runs to compare the current value against old values, 
    * and notify in case it has changed.
    * This file is store in the `historyDir` which have `history` as default folder name, 
    * you can override it by setting the `historyDir: 'data'` property.
    */
   history: 'hackernews.csv',
+  
   /**
    * onDocument [required] Function that specifies how to get the DOM data from the url
    */
@@ -34,6 +37,7 @@ domcheck({
     const nodeList = document.querySelectorAll('.itemlist tr:first-child .title a');
     return nodeList[0] && nodeList[0].innerText.trim();
   },
+  
   /**
    * notify [required] Function that defines how you will get notified with the result,
    * below is an example using IFTTT webhook to get notified via Telegram.
