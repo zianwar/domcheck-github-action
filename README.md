@@ -5,7 +5,7 @@ Track DOM node and get notified when its value changes.
 Use cases includes checking some text on websites that doesn\'t support APIs, such as tracking a visa application status or amazon product price.
 
 ## Usage
-Fork this repo and add your DOM checkers, you can define a **checker** with just a Javascript file, like this [`hackernews.js`](https://github.com/zianwar/domcheck-github-action/blob/master/hackernews.js):
+Fork this repo and add your DOM checkers, you can define a **checker** with just a Javascript file, like this [`hackernews.checker.js`](https://github.com/zianwar/domcheck-github-action/blob/master/hackernews.checker.js):
 ```js
 const domcheck = require('./domcheck');
 const axios = require('axios');
