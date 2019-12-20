@@ -115,7 +115,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-The script will scrape the `url` for the given `selector` in the config JSON file and will record values in a history file (CSV) `history` that will be committed automaticallty to your repository by Github Actions.
+When `hackernews.checker.js` runs, it will scrape the `url` for the given selector `waitForSelector` defined in the config file, and it will record values in a CSV file `history` which will then be committed and pushed automaticallty to the current repository by the GitHub action.
+
+---
 
 For example I have setup the [IFTTT webhook](https://ifttt.com/maker_webhooks) with Telegram to notify me upon changes, after running the checker and if the value has changed I'll get the following message in Telegram:
 
