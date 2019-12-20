@@ -1,0 +1,35 @@
+name: 'DomCheck GitHub Action'
+
+on:
+  schedule:
+    - cron: '0 19 * * *' # 7:00pm UTC = 11am PST
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+            node-version: '12.13.x'
+
+      - name: Install npm dependencies
+        run: yarn install
+
+      - name: Run Hackernews domcheck Script
+        run: node hackernews.checker.js
+
+      - name: Commit Files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Set history files"
+
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
