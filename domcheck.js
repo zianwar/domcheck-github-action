@@ -14,7 +14,7 @@ function query(url, waitForSelector, onDocument) {
       return page
         .goto(url)
         .then(() => page.waitForSelector(waitForSelector))
-        .then(() => page.evaluate(onDocument))
+        .then(() => page.evaluate(onDocument, waitForSelector))
         .finally(() => browser.close());
     });
   });
@@ -66,7 +66,7 @@ function domcheck(config) {
     historyDir,
     notify
   } = merge(defaultConfig, config);
-  history = history || `${name}.csv`;
+  const historyPath = history || `${name}.csv`;
 
   if (some([name, url, onDocument, notify], x => isNil(x))) {
     throw new Error("missing parameters");
@@ -76,12 +76,12 @@ function domcheck(config) {
     .then(text => {
       if (isEmpty(text)) throw new Error(`query result is empty`);
 
-      return getHistory(historyDir, history).then(entries => {
+      return getHistory(historyDir, historyPath).then(entries => {
         const lastEntry = last(entries);
         console.log("last entry:", lastEntry);
 
         entries.push({ text, timestamp: Date.now() });
-        const promises = [setHistory(historyDir, history, entries)];
+        const promises = [setHistory(historyDir, historyPath, entries)];
 
         if (!lastEntry || (lastEntry && lastEntry.text !== text)) {
           console.log("notifying change:", text);
