@@ -5,16 +5,16 @@ const csv = require("fast-csv");
 const some = require("lodash/some");
 const last = require("lodash/last");
 const isEmpty = require("lodash/isEmpty");
-const isEmpty = require("lodash/isEmpty");
+const isNil = require("lodash/isNil");
 const merge = require("lodash/merge");
 
-function query(url, selector, onDocument) {
+function query(url, waitForSelector, onDocument) {
   return puppeteer.launch({ headless: true }).then(browser => {
     return browser.newPage().then(page => {
       return page
         .goto(url)
-        .then(() => page.waitForSelector(selector))
-        .then(() => page.evaluate(onDocument, selector))
+        .then(() => page.waitForSelector(waitForSelector))
+        .then(() => page.evaluate(onDocument))
         .finally(() => browser.close());
     });
   });
@@ -60,19 +60,18 @@ function domcheck(config) {
   const {
     name,
     url,
-    selector,
+    waitForSelector,
     onDocument,
     history,
-    webhook,
     historyDir,
     notify
   } = merge(defaultConfig, config);
 
-  if (some([name, url, selector, webhook, notify], x => isNil(x) || isEmpty(x))) {
+  if (some([name, url, onDocument, history, notify], x => isNil(x))) {
     throw new Error("missing parameters");
   }
 
-  return query(url, selector, onDocument)
+  return query(url, waitForSelector, onDocument)
     .then(text => {
       if (isEmpty(text)) throw new Error(`query result is empty`);
 

@@ -18,10 +18,11 @@ domcheck({
    * you can override it by setting the `historyDir: 'data'` property.
    */
   history: 'hackernews.csv',
+  waitForSelector: '.itemlist tr:first-child .title a',
   /**
    * onDocument [required] Function that specifies how to get the DOM data from the url
    */
-  onDocument: () => {
+  onDocument: (selector) => {
     const nodeList = document.querySelectorAll('.itemlist tr:first-child .title a');
     return nodeList[0] && nodeList[0].innerText.trim();
   },
@@ -34,8 +35,8 @@ domcheck({
    * @param {string} error The error message if any error happened.
    */
   notify: (name, value, error) => {
-    const webhook = 'https://maker.ifttt.com/trigger/{EVENT}/with/key/{IFTTT_KEY}';
-    const url = new URL(webhook);
+    const iftttWebhook = (event, key) => `https://maker.ifttt.com/trigger/${event}/with/key/${key}`;
+    const url = new URL(iftttWebhook('_EVENT_', '_KEY_'));
     const success = `✓ ${name} status upated to '${value}'`
     const failure = `𝗑  Error running checker ${name}: '${error}'`
     const message = error ? failure : success;
