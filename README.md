@@ -120,7 +120,6 @@ The script will scrape the `url` for the given `selector` in the config JSON fil
 For example I have setup the [IFTTT webhook](https://ifttt.com/maker_webhooks) with Telegram to notify me upon changes, after running the checker and if the value has changed I'll get the following message in Telegram:
 
 ![IFTTT bot](https://i.imgur.com/pInm3qg.png)
-```
 
 ## License
-[MIT](https://github.com/zianwar/domcheck/blob/master/LICENSE)
+[MIT](https://github.com/zianwar/domcheck-github-action/blob/master/LICENSE)
