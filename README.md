@@ -1,6 +1,7 @@
 # DomCheck-GitHub-Action
 
 Track DOM node and get notified when its value changes.  
+
 For more details you can read my blog article on https://www.zianwar.com/blog/domcheck-github-action/
 
 ## Usage
