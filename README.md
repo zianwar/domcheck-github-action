@@ -69,7 +69,7 @@ domcheck({
 ```
 ## Setup Github Action
 
-The [`action.yml`](https://github.com/zianwar/domcheck-github-action/blob/master/.github/workflows/action.yml) already inital contains code for setting up the action, you only need to:
+The [`action.yml`](https://github.com/zianwar/domcheck-github-action/blob/master/.github/workflows/action.yml) already contains initial code for setting up the GitHub action, you only need to:
 1. Set your cron schedure
 2. Add the part where you call your checkers that you created:
 
