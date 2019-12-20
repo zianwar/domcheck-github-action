@@ -5,7 +5,7 @@ Track DOM node and get notified when its value changes.
 Use cases includes checking some text on websites that doesn\'t support APIs, such as tracking a visa application status or amazon product price.
 
 ## Usage
-Fork this repo and add your DOM checkers, you can define a **checker** with just a Javascript file, like this [`hackernews.js`](https://github.com/zianwar/domcheck/blob/master/hackernews.js):
+Fork this repo and add your DOM checkers, you can define a **checker** with just a Javascript file, like this [`hackernews.js`](https://github.com/zianwar/domcheck-github-action/blob/master/hackernews.js):
 ```js
 const domcheck = require('./domcheck');
 const axios = require('axios');
@@ -59,7 +59,7 @@ domcheck({
 ```
 ### Setup Github Action
 
-The [`action.yml`](https://github.com/zianwar/domcheck/blob/master/.github/workflows/action.yml) already inital contains code for setting up the action, you only need to:
+The [`action.yml`](https://github.com/zianwar/domcheck-github-action/blob/master/.github/workflows/action.yml) already inital contains code for setting up the action, you only need to:
 1. Set your cron schedure
 2. Add the part where you call your checkers that you created:
 
