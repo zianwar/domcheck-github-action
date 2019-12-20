@@ -68,7 +68,7 @@ function domcheck(config) {
   } = merge(defaultConfig, config);
   const historyPath = history || `${name}.csv`;
 
-  if (some([name, url, onDocument, notify], x => isNil(x))) {
+  if (some([name, url, onDocument, waitForSelector, notify], x => isNil(x))) {
     throw new Error("missing parameters");
   }
 
