@@ -1,8 +1,9 @@
 name: 'DomCheck GitHub Action'
 
 on:
-  schedule:
-    - cron: '0 19 * * *' # 7:00pm UTC = 11am PST
+  push:    
+#   schedule:
+#     - cron: '0 19 * * *' # 7:00pm UTC = 11am PST
 
 jobs:
   bot:
